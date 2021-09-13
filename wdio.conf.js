@@ -1,5 +1,8 @@
+const { addCommands } = require('./helpers/setup.helper');
+
+
 exports.config = {
-        specs: [
+    specs: [
         './specs/**/*.spec.js'
     ],
 
@@ -7,7 +10,7 @@ exports.config = {
     maxInstances: 1,
 
     capabilities: [{
-    
+
 
         maxInstances: 1,
         browserName: 'chrome',
@@ -27,5 +30,9 @@ exports.config = {
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
-    }
+    },
+
+    before: async function (capabilities, specs, browser) {
+      await addCommands();
+    },
 }
